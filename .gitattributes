@@ -1,0 +1,5 @@
+# Managed by Restk — keep workspace file line endings stable across platforms.
+*.yaml text eol=lf
+*.yml text eol=lf
+*.env text eol=lf
+*.md text eol=lf
