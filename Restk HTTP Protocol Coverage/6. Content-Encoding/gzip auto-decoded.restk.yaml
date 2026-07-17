@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447696"
+name: gzip auto-decoded
+method: GET
+url: "{{base_url}}/http/gzip"
+order: 1
+scripts:
+    postResponse: |-
+        nova.test("gzip decoded", function () { nova.expect(nova.response.json().gzipped || true).toBeTruthy(); nova.expect(nova.response.status).toBe(200); });

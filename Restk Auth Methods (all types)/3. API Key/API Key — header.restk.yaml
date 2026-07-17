@@ -1,0 +1,19 @@
+# Restk Request
+id: "336440314646413320"
+name: API Key — header
+description: App puts the key/value into the X-API-Key header; oracle 200s on a match.
+method: GET
+url: "{{base_url}}/auth/apikey"
+order: 1
+params:
+    - {id: "CB52F807-2D96-4497-969F-D921D5A835A4", key: header, value: X-API-Key, order: 0}
+    - {id: "89159612-314B-4D45-9559-5BEDC4D1476B", key: expected, value: key-abc-123, order: 1}
+auth:
+    apikey:
+        in: header
+        name: X-API-Key
+scripts:
+    postResponse: |-
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+        var d = nova.response.json();
+        nova.test("key echoed", function () { nova.expect(d.key).toBe("key-abc-123"); });

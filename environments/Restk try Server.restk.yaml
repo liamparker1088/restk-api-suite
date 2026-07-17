@@ -1,0 +1,5 @@
+# Restk Environment
+id: "336440314650607619"
+name: Restk try Server
+variables:
+    - {id: "336440314650607620", key: base_url, value: 'https://try.restk.ai', order: 0}

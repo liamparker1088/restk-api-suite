@@ -1,0 +1,12 @@
+# Restk Request
+id: "336440318597447714"
+name: Bearer — missing → 401
+method: GET
+url: "{{base_url}}/auth/bearer"
+order: 2
+params:
+    - {id: "0B9D177D-FF3C-476F-9F6F-640155B29810", key: expected, value: test-token, order: 0}
+scripts:
+    postResponse: |-
+        nova.test("status 401", function () { nova.expect(nova.response.status).toBe(401); });
+        nova.test("challenge header", function () { nova.expect(nova.response.getHeader("WWW-Authenticate")).toContain("Bearer"); });

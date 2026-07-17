@@ -1,0 +1,16 @@
+# Restk Request
+id: "336440315925676047"
+name: Add item 1 ({{productId}} × 2)
+method: POST
+url: "{{base_url}}/shop/cart/{{cartId}}/items"
+order: 3
+headers:
+    - {id: "158DFC61-7AE2-4B29-B7BE-52F6B890F984", key: Authorization, value: 'Bearer {{token}}', order: 0}
+body:
+    json: |-
+        {
+          "productId": "{{productId}}",
+          "qty": 2
+        }
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"item added (201)\", function () { nova.expect(nova.response.status).toBe(201); });\nnova.test(\"cart has ≥ 2 units\", function () { nova.expect(d.itemCount).toBeGreaterThanOrEqual(2); });\n"

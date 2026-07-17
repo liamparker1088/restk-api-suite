@@ -1,0 +1,15 @@
+# Restk Request
+id: "336440315925676036"
+name: Login → capture token
+description: Authenticates and stores {{token}} for every Bearer-gated call below. Green = login works + token captured.
+method: POST
+url: "{{base_url}}/shop/login"
+order: 1
+body:
+    json: |-
+        {
+          "username": "qa",
+          "password": "shop-pass"
+        }
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"login succeeds (200)\", function () { nova.expect(nova.response.status).toBe(200); });\nnova.test(\"token present\", function () { nova.expect(d.token).toBeDefined(); nova.expect(d.token).toBeTruthy(); });\nnova.test(\"userId present\", function () { nova.expect(d.userId).toContain(\"user_\"); });\nnova.environment.set(\"token\", d.token);\nnova.environment.set(\"userId\", d.userId);\n"

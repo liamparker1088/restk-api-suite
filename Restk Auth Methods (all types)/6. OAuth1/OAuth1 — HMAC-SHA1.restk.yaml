@@ -1,0 +1,21 @@
+# Restk Request
+id: "336440314646413328"
+name: OAuth1 — HMAC-SHA1
+description: App builds the OAuth1 signature base string + Authorization header; oracle recomputes it.
+method: POST
+url: "{{base_url}}/auth/oauth1"
+order: 1
+params:
+    - {id: "5E21BF89-9576-48F1-9B2C-E2377D92B969", key: page, value: "2", order: 0}
+auth:
+    oauth1:
+        consumerKey: oauth1-key
+        realm: ""
+        signatureMethod: HMAC-SHA1
+        token: oauth1-token
+scripts:
+    postResponse: |-
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+        var d = nova.response.json();
+        nova.test("oauth1 valid", function () { nova.expect(d.valid).toBe(true); });
+        nova.test("method HMAC-SHA1", function () { nova.expect(d.method).toBe("HMAC-SHA1"); });

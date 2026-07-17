@@ -1,0 +1,11 @@
+# Restk Request
+id: "336440318597447700"
+name: set then read back
+method: GET
+url: "{{base_url}}/http/cookies/set"
+order: 1
+params:
+    - {id: "655F0BF9-C89D-4C53-B4B9-48BEFABCB074", key: flavor, value: chocolate, order: 0}
+scripts:
+    postResponse: |-
+        nova.test("cookie captured + resent", function () { nova.expect(nova.response.json().cookies.flavor).toBe("chocolate"); });

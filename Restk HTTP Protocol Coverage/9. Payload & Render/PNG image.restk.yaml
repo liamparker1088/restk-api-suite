@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447710"
+name: PNG image
+method: GET
+url: "{{base_url}}/http/image/png"
+order: 5
+scripts:
+    postResponse: |-
+        nova.test("image/png", function () { nova.expect(nova.response.contentType).toContain("image/png"); });

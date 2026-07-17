@@ -1,0 +1,16 @@
+# Restk Request
+id: "336440315925676051"
+name: Checkout → capture orderId
+description: Turns the cart into an order awaiting payment. Stores {{orderId}} + {{orderAmount}}.
+method: POST
+url: "{{base_url}}/shop/checkout"
+order: 1
+headers:
+    - {id: "93C9771E-199D-4F54-BAE1-62F71D3EF39A", key: Authorization, value: 'Bearer {{token}}', order: 0}
+body:
+    json: |-
+        {
+          "cartId": "{{cartId}}"
+        }
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"order created (201)\", function () { nova.expect(nova.response.status).toBe(201); });\nnova.test(\"status awaiting_payment\", function () { nova.expect(d.status).toBe(\"awaiting_payment\"); });\nnova.test(\"order amount == cart total\", function () { nova.expect(d.amount).toBeCloseTo(parseFloat(nova.environment.get(\"cartTotal\")), 0.001); });\nnova.environment.set(\"orderId\", d.id);\nnova.environment.set(\"orderAmount\", String(d.amount));\n"

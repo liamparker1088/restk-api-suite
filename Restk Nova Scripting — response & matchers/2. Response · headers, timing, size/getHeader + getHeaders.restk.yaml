@@ -1,0 +1,8 @@
+# Restk Request
+id: "336440320174505992"
+name: getHeader + getHeaders
+method: GET
+url: "{{base_url}}/script/headers"
+order: 1
+scripts:
+    postResponse: "\nnova.test(\"getHeader X-Request-Id\", function () { nova.expect(nova.response.getHeader(\"X-Request-Id\")).toBe(\"req-abc-123\"); });\nnova.test(\"getHeader X-Rate-Limit\", function () { nova.expect(nova.response.getHeader(\"X-Rate-Limit\")).toBe(\"100\"); });\nnova.test(\"getHeaders() is an object\", function () { nova.expect(nova.response.getHeaders()).toBeType(\"object\"); });"

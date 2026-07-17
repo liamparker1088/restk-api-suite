@@ -1,0 +1,13 @@
+# Restk Request
+id: "336440320174505989"
+name: json() + isJSON + contentType
+method: GET
+url: "{{base_url}}/script/matchers"
+order: 4
+scripts:
+    postResponse: |-
+        var d = nova.response.json();
+
+        nova.test("json() parses", function () { nova.expect(d).toBeType("object"); nova.expect(d.greeting).toBe("hello world"); });
+        nova.test("isJSON is true", function () { nova.expect(nova.response.isJSON).toBe(true); });
+        nova.test("contentType is application/json", function () { nova.expect(nova.response.contentType).toContain("application/json"); });

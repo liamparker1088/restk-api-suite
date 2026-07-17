@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447707"
+name: stream 5 NDJSON lines
+method: GET
+url: "{{base_url}}/http/stream/5"
+order: 2
+scripts:
+    postResponse: |
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });

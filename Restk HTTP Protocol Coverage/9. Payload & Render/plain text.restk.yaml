@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447708"
+name: plain text
+method: GET
+url: "{{base_url}}/http/plain"
+order: 3
+scripts:
+    postResponse: |-
+        nova.test("text/plain", function () { nova.expect(nova.response.contentType).toContain("text/plain"); });

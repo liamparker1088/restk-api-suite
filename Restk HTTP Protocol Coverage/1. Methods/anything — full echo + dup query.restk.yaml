@@ -1,0 +1,22 @@
+# Restk Request
+id: "336440318593253385"
+name: anything — full echo + dup query
+method: POST
+url: "{{base_url}}/http/anything"
+order: 8
+params:
+    - {id: "93CAC40B-D00A-4FB4-B7AF-498EBC3410FA", key: a, value: "1", order: 0}
+    - {id: "9BA17220-6FA5-40CF-97AC-39AC687EE5F0", key: a, value: "2", order: 1}
+    - {id: "5EC005D0-6765-4BB9-B898-9458B7322C88", key: b, value: x, order: 2}
+body:
+    json: |-
+        {
+          "hello": "world"
+        }
+scripts:
+    postResponse: |
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+
+        var d = nova.response.json();
+        nova.test("method echoed", function () { nova.expect(d.method).toBe("POST"); });
+        nova.test("json body parsed", function () { nova.expect(d.json.hello).toBe("world"); });

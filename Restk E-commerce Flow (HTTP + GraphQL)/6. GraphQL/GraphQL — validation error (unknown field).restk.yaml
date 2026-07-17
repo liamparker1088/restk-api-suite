@@ -1,0 +1,12 @@
+# Restk Request
+id: "336440315925676060"
+name: GraphQL — validation error (unknown field)
+method: POST
+url: "{{base_url}}/graphql/shop"
+order: 4
+body:
+    graphql:
+        query: |-
+            { product(id:"p-1001"){ nope } }
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"data is null on validation failure\", function () { nova.expect(d.data).toBeNull(); });\nnova.test(\"validation error returned\", function () { nova.expect(d.errors[0].message).toContain(\"Cannot query field\"); });\n"

@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440315925676042"
+name: Product detail ({{productId}})
+description: Deep-links the captured product id — proves the variable chained from Search.
+method: GET
+url: "{{base_url}}/shop/products/{{productId}}"
+order: 4
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"product detail ok (200)\", function () { nova.expect(nova.response.status).toBe(200); });\nnova.test(\"id matches the searched product\", function () { nova.expect(d.id).toBe(nova.environment.get(\"productId\")); });\nnova.test(\"has a positive price\", function () { nova.expect(d.price).toBeGreaterThan(0); });\n"

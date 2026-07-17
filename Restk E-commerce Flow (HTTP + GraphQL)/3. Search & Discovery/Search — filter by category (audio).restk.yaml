@@ -1,0 +1,10 @@
+# Restk Request
+id: "336440315925676040"
+name: Search — filter by category (audio)
+method: GET
+url: "{{base_url}}/shop/search"
+order: 2
+params:
+    - {id: "4571DE9E-748F-4689-B6FD-A181B6021A7A", key: category, value: audio, order: 0}
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"category filter honored\", function () {\n    nova.expect(d.results.length).toBeGreaterThan(0);\n    for (var i = 0; i < d.results.length; i++) { nova.expect(d.results[i].category).toBe(\"audio\"); }\n});\n"

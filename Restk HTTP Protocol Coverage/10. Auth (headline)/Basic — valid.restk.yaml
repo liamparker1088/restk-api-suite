@@ -1,0 +1,15 @@
+# Restk Request
+id: "336440318597447715"
+name: Basic — valid
+method: GET
+url: "{{base_url}}/auth/basic"
+order: 3
+params:
+    - {id: "EA929723-7092-4F5F-BC30-30C93F7637A0", key: user, value: qa, order: 0}
+    - {id: "6F0BBD35-5522-423D-AEBE-D4FDD17AADF5", key: pass, value: secret, order: 1}
+auth:
+    basic:
+        username: qa
+scripts:
+    postResponse: |
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });

@@ -1,0 +1,17 @@
+# Restk Request
+id: "336440320178700294"
+name: toContain - toHaveLength - toHaveProperty - toBeOneOf - toBeEmpty - toMatch
+method: GET
+url: "{{base_url}}/script/matchers"
+order: 1
+scripts:
+    postResponse: |-
+        var d = nova.response.json();
+
+        nova.test("toContain (array + string)", function () { nova.expect(d.tags).toContain("beta"); nova.expect(d.greeting).toContain("world"); });
+        nova.test("toHaveLength (array + string)", function () { nova.expect(d.tags).toHaveLength(3); nova.expect(d.greeting).toHaveLength(11); });
+        nova.test("toHaveProperty (key + key/value)", function () { nova.expect(d).toHaveProperty("user"); nova.expect(d.user).toHaveProperty("id", 7); });
+        nova.test("toBeOneOf", function () { nova.expect(d.status).toBeOneOf(["active","inactive","pending"]); });
+        nova.test("toBeEmpty (array + string)", function () { nova.expect(d.emptyList).toBeEmpty(); nova.expect(d.emptyText).toBeEmpty(); });
+        nova.test("toMatch (regex)", function () { nova.expect(d.email).toMatch("^[a-z]+@[a-z.]+$"); nova.expect(d.greeting).toMatch("^hello"); });
+        nova.test("nested access", function () { nova.expect(d.nested.level1.level2).toBe("deep-value"); });

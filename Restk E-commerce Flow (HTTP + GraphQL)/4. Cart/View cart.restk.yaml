@@ -1,0 +1,10 @@
+# Restk Request
+id: "336440315925676049"
+name: View cart
+method: GET
+url: "{{base_url}}/shop/cart/{{cartId}}"
+order: 5
+headers:
+    - {id: "6C65DF85-9E20-4728-B192-5EB7B80931A7", key: Authorization, value: 'Bearer {{token}}', order: 0}
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"cart total matches last add\", function () { nova.expect(d.total).toBeCloseTo(parseFloat(nova.environment.get(\"cartTotal\")), 0.001); });\nnova.test(\"3 units in cart\", function () { nova.expect(d.itemCount).toBe(3); });\n"

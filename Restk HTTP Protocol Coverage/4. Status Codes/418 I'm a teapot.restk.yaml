@@ -1,0 +1,10 @@
+# Restk Request
+id: "336440318597447689"
+name: 418 I'm a teapot
+method: GET
+url: "{{base_url}}/http/status/418"
+order: 6
+scripts:
+    postResponse: |-
+        nova.test("status 418", function () { nova.expect(nova.response.status).toBe(418); });
+        nova.test("reason phrase", function () { nova.expect(nova.response.reason.length).toBeGreaterThan(0); });

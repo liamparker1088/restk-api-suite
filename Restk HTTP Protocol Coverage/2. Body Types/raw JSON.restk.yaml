@@ -1,0 +1,15 @@
+# Restk Request
+id: "336440318593253387"
+name: raw JSON
+method: POST
+url: "{{base_url}}/http/anything"
+order: 1
+body:
+    json: |-
+        {
+          "n": 42,
+          "ok": true
+        }
+scripts:
+    postResponse: |-
+        nova.test("json round-trips", function () { var j = nova.response.json().json; nova.expect(j.n).toBe(42); nova.expect(j.ok).toBe(true); });

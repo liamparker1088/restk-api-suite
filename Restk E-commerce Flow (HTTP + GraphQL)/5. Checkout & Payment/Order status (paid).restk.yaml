@@ -1,0 +1,10 @@
+# Restk Request
+id: "336440315925676055"
+name: Order status (paid)
+method: GET
+url: "{{base_url}}/shop/order/{{orderId}}"
+order: 5
+headers:
+    - {id: "F7BFD776-B479-477C-B3EF-127B62A7F891", key: Authorization, value: 'Bearer {{token}}', order: 0}
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"order is paid\", function () { nova.expect(d.status).toBe(\"paid\"); });\nnova.test(\"order carries the paymentId\", function () { nova.expect(d.paymentId).toBe(nova.environment.get(\"paymentId\")); });\n"

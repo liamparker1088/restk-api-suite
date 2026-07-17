@@ -1,0 +1,14 @@
+# Restk Request
+id: "336440315925676057"
+name: GraphQL — search (query + result shape)
+method: POST
+url: "{{base_url}}/graphql/shop"
+order: 1
+body:
+    graphql:
+        query: |-
+            query($q:String){ search(q:$q){ total results { id name price category } } }
+        variables: |-
+            {"q":"wireless"}
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"no GraphQL errors\", function () { nova.expect(d.errors).toBeUndefined(); });\nnova.test(\"search.total > 0\", function () { nova.expect(d.data.search.total).toBeGreaterThan(0); });\n"

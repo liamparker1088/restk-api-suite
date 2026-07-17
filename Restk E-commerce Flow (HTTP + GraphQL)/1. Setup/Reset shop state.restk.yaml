@@ -1,0 +1,10 @@
+# Restk Request
+id: "336440315925676034"
+name: Reset shop state
+description: Clears carts/orders/tokens so the flow is deterministic on every run. Run me first.
+method: POST
+url: "{{base_url}}/shop/reset"
+order: 1
+scripts:
+    postResponse: |-
+        nova.test("reset ok (200)", function () { nova.expect(nova.response.status).toBe(200); });

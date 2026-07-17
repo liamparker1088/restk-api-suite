@@ -1,0 +1,10 @@
+# Restk Request
+id: "336440320178700288"
+name: size == body byte length
+method: GET
+url: "{{base_url}}/script/size"
+order: 3
+params:
+    - {id: "91B389EE-3511-46E4-A070-6D0F53135080", key: bytes, value: "512", order: 0}
+scripts:
+    postResponse: "\nnova.test(\"size is 512\", function () { nova.expect(nova.response.size).toBe(512); });\nnova.test(\"size equals text().length (ASCII)\", function () { nova.expect(nova.response.size).toBe(nova.response.text().length); });"

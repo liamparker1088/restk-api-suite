@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440315925676041"
+name: Categories
+method: GET
+url: "{{base_url}}/shop/categories"
+order: 3
+scripts:
+    postResponse: |-
+        nova.test("categories listed", function () { nova.expect(nova.response.json().categories.length).toBeGreaterThan(0); });

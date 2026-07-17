@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447701"
+name: attribute matrix
+method: GET
+url: "{{base_url}}/http/cookies/set-attributes"
+order: 2
+scripts:
+    postResponse: |-
+        nova.test("cookies land in jar", function () { nova.expect(nova.response.json().cookies).toBeDefined(); });

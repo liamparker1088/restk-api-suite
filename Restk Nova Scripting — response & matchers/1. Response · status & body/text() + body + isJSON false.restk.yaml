@@ -1,0 +1,8 @@
+# Restk Request
+id: "336440320174505990"
+name: text() + body + isJSON false
+method: GET
+url: "{{base_url}}/script/text"
+order: 5
+scripts:
+    postResponse: "\nnova.test(\"text() carries the body\", function () { nova.expect(nova.response.text()).toContain(\"quick brown fox\"); });\nnova.test(\"body equals text()\", function () { nova.expect(nova.response.body).toBe(nova.response.text()); });\nnova.test(\"isJSON is false\", function () { nova.expect(nova.response.isJSON).toBe(false); });\nnova.test(\"contentType is text/plain\", function () { nova.expect(nova.response.contentType).toContain(\"text/plain\"); });"

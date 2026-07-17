@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440320174505988"
+name: status 418 → distinctive reason
+method: GET
+url: "{{base_url}}/script/status/418"
+order: 3
+scripts:
+    postResponse: |-
+        nova.test("reason is I'm a teapot", function () { nova.expect(nova.response.reason).toBe("I'm a teapot"); });

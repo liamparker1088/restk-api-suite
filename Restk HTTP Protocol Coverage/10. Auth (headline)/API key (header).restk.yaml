@@ -1,0 +1,16 @@
+# Restk Request
+id: "336440318597447716"
+name: API key (header)
+method: GET
+url: "{{base_url}}/auth/apikey"
+order: 4
+params:
+    - {id: "3161C25F-8A73-4886-87CF-F62B6944A03F", key: header, value: X-API-Key, order: 0}
+    - {id: "0E35E8DE-0A69-4722-BEDC-CF41084FF9ED", key: expected, value: key-123, order: 1}
+auth:
+    apikey:
+        in: header
+        name: X-API-Key
+scripts:
+    postResponse: |
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });

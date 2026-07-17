@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447688"
+name: 404 Not Found
+method: GET
+url: "{{base_url}}/http/status/404"
+order: 5
+scripts:
+    postResponse: |
+        nova.test("status 404", function () { nova.expect(nova.response.status).toBe(404); });

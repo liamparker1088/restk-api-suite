@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447690"
+name: 500 Server Error
+method: GET
+url: "{{base_url}}/http/status/500"
+order: 7
+scripts:
+    postResponse: |
+        nova.test("status 500", function () { nova.expect(nova.response.status).toBe(500); });

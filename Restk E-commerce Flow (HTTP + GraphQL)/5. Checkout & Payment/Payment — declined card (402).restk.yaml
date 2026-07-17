@@ -1,0 +1,18 @@
+# Restk Request
+id: "336440315925676052"
+name: Payment — declined card (402)
+description: A card ending 0000 simulates a decline — asserts the failure path.
+method: POST
+url: "{{base_url}}/shop/payment"
+order: 2
+headers:
+    - {id: "320C9347-FEA9-4C8F-9B4E-6BFA744A2BA5", key: Authorization, value: 'Bearer {{token}}', order: 0}
+body:
+    json: |-
+        {
+          "orderId": "{{orderId}}",
+          "method": "card",
+          "card": "4111 1111 1111 0000"
+        }
+scripts:
+    postResponse: "\nnova.test(\"declined card → 402\", function () { nova.expect(nova.response.status).toBe(402); });\nnova.test(\"status declined\", function () { nova.expect(nova.response.json().status).toBe(\"declined\"); });\n"

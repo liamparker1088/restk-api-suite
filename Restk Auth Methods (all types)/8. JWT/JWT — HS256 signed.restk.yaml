@@ -1,0 +1,21 @@
+# Restk Request
+id: "336440314646413333"
+name: JWT — HS256 signed
+description: 'App signs a JWT (HS256) with the shared secret and sends Authorization: Bearer <jwt>; oracle verifies it.'
+method: GET
+url: "{{base_url}}/auth/jwt"
+order: 1
+auth:
+    jwt:
+        algorithm: HS256
+        headerName: ""
+        payload: '{"sub":"qa","name":"Jelly"}'
+        prefix: ""
+        secretIsBase64: false
+scripts:
+    postResponse: |-
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+        var d = nova.response.json();
+        nova.test("jwt valid", function () { nova.expect(d.valid).toBe(true); });
+        nova.test("algorithm HS256", function () { nova.expect(d.algorithm).toBe("HS256"); });
+        nova.test("sub claim survives", function () { nova.expect(d.claims.sub).toBe("qa"); });

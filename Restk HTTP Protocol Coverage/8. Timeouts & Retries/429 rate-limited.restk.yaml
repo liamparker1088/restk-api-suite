@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447704"
+name: 429 rate-limited
+method: GET
+url: "{{base_url}}/http/status/429"
+order: 2
+scripts:
+    postResponse: |
+        nova.test("status 429", function () { nova.expect(nova.response.status).toBe(429); });

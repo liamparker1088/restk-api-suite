@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447687"
+name: 400 Bad Request
+method: GET
+url: "{{base_url}}/http/status/400"
+order: 4
+scripts:
+    postResponse: |
+        nova.test("status 400", function () { nova.expect(nova.response.status).toBe(400); });

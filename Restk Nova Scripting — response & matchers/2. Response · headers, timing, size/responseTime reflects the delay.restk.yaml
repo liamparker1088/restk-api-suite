@@ -1,0 +1,11 @@
+# Restk Request
+id: "336440320174505993"
+name: responseTime reflects the delay
+description: Server sleeps 300ms; responseTime must be a non-trivial number.
+method: GET
+url: "{{base_url}}/script/delay"
+order: 2
+params:
+    - {id: "7EB1713E-467B-4678-8DFB-AC0F753793F0", key: ms, value: "300", order: 0}
+scripts:
+    postResponse: "\nnova.test(\"responseTime is a number\", function () { nova.expect(nova.response.responseTime).toBeType(\"number\"); });\nnova.test(\"responseTime > 150ms\", function () { nova.expect(nova.response.responseTime).toBeGreaterThan(150); });"

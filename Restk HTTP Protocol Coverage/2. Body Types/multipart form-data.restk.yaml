@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318593253390"
+name: multipart form-data
+description: '⚠️ KNOWN LIMITATION: .restk import does not yet carry form-data fields. After importing, open the Body tab and add field1=value1 and field2=value2, then Send. Green = the app builds + sends multipart/form-data (the server echoes the parts). Until you add the fields the ''parts'' check stays red.'
+method: POST
+url: "{{base_url}}/http/multipart"
+order: 4
+scripts:
+    postResponse: "\nnova.test(\"multipart accepted (200)\", function () { nova.expect(nova.response.status).toBe(200); });\nnova.test(\"2 parts echoed — add field1/field2 in the Body tab if this is 0\", function () { nova.expect(nova.response.json().parts).toHaveLength(2); });"

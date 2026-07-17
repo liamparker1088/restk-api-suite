@@ -1,0 +1,13 @@
+# Restk Request
+id: "336440315925676059"
+name: GraphQL — partial error (data + errors)
+description: The `flaky` field always errors; the GraphQL spec returns partial data + an errors[] entry.
+method: POST
+url: "{{base_url}}/graphql/shop"
+order: 3
+body:
+    graphql:
+        query: |-
+            { product(id:"p-1001"){ name flaky } }
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"partial data present\", function () { nova.expect(d.data.product.name).toContain(\"Aurora\"); });\nnova.test(\"errors array present with path\", function () { nova.expect(d.errors).toBeDefined(); nova.expect(d.errors[0].path).toContain(\"flaky\"); });\n"

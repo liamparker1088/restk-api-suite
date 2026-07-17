@@ -1,0 +1,8 @@
+# Restk Request
+id: "336440320174505987"
+name: status 404 → reason + isSuccess false
+method: GET
+url: "{{base_url}}/script/status/404"
+order: 2
+scripts:
+    postResponse: "\nnova.test(\"status is 404\", function () { nova.expect(nova.response.status).toBe(404); });\nnova.test(\"reason is Not Found\", function () { nova.expect(nova.response.reason).toBe(\"Not Found\"); });\nnova.test(\"isSuccess is false\", function () { nova.expect(nova.response.isSuccess).toBe(false); });"

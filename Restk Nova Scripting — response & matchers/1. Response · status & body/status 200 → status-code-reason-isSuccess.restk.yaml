@@ -1,0 +1,8 @@
+# Restk Request
+id: "336440320174505986"
+name: status 200 → status-code-reason-isSuccess
+method: GET
+url: "{{base_url}}/script/status/200"
+order: 1
+scripts:
+    postResponse: "\nnova.test(\"status is 200\", function () { nova.expect(nova.response.status).toBe(200); });\nnova.test(\"code is 200\", function () { nova.expect(nova.response.code).toBe(200); });\nnova.test(\"reason is OK\", function () { nova.expect(nova.response.reason).toBe(\"OK\"); });\nnova.test(\"isSuccess is true\", function () { nova.expect(nova.response.isSuccess).toBe(true); });"

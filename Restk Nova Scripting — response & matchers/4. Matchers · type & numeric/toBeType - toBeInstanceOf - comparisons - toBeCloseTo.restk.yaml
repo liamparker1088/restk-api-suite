@@ -1,0 +1,26 @@
+# Restk Request
+id: "336440320178700292"
+name: toBeType - toBeInstanceOf - comparisons - toBeCloseTo
+method: GET
+url: "{{base_url}}/script/matchers"
+order: 1
+scripts:
+    postResponse: |-
+        var d = nova.response.json();
+
+        nova.test("toBeType covers every JS type", function () {
+          nova.expect(d.greeting).toBeType("string");
+          nova.expect(d.count).toBeType("number");
+          nova.expect(d.active).toBeType("boolean");
+          nova.expect(d.tags).toBeType("array");
+          nova.expect(d.user).toBeType("object");
+          nova.expect(d.missing).toBeType("null");
+        });
+        nova.test("toBeInstanceOf", function () { nova.expect(d.tags).toBeInstanceOf(Array); nova.expect(d.user).toBeInstanceOf(Object); });
+        nova.test("greater / less (and OrEqual)", function () {
+          nova.expect(d.count).toBeGreaterThan(40);
+          nova.expect(d.count).toBeGreaterThanOrEqual(42);
+          nova.expect(d.count).toBeLessThan(100);
+          nova.expect(d.count).toBeLessThanOrEqual(42);
+        });
+        nova.test("toBeCloseTo (float)", function () { nova.expect(d.pi).toBeCloseTo(3.14159, 0.001); });

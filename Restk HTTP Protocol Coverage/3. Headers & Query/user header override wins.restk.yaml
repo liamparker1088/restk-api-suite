@@ -1,0 +1,11 @@
+# Restk Request
+id: "336440318597447681"
+name: user header override wins
+method: GET
+url: "{{base_url}}/http/headers/one/User-Agent"
+order: 2
+headers:
+    - {id: "DBCFD7BF-0477-4501-86E6-498686611015", key: User-Agent, value: QA-Override/9.9, order: 0}
+scripts:
+    postResponse: |-
+        nova.test("override applied", function () { nova.expect(nova.response.json().value).toBe("QA-Override/9.9"); });

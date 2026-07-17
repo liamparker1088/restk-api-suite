@@ -1,0 +1,22 @@
+# Restk Request
+id: "336440314646413325"
+name: AWS SigV4 — valid signature
+description: App builds the SigV4 canonical request + Authorization header; oracle recomputes and 200s on a match.
+method: POST
+url: "{{base_url}}/auth/awssigv4"
+order: 1
+body:
+    json: |-
+        {
+          "hello": "world"
+        }
+auth:
+    awssigv4:
+        accessKey: AKIDEXAMPLE
+        region: us-east-1
+        service: execute-api
+scripts:
+    postResponse: |-
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+        var d = nova.response.json();
+        nova.test("signature valid", function () { nova.expect(d.signatureValid).toBe(true); });

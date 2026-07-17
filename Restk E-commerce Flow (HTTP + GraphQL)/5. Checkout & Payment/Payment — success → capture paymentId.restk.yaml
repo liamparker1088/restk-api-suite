@@ -1,0 +1,17 @@
+# Restk Request
+id: "336440315925676053"
+name: Payment — success → capture paymentId
+method: POST
+url: "{{base_url}}/shop/payment"
+order: 3
+headers:
+    - {id: "BA41139E-D523-49AD-BA3A-7D279AD998A0", key: Authorization, value: 'Bearer {{token}}', order: 0}
+body:
+    json: |-
+        {
+          "orderId": "{{orderId}}",
+          "method": "card",
+          "card": "4111 1111 1111 1111"
+        }
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"payment succeeds (200)\", function () { nova.expect(nova.response.status).toBe(200); });\nnova.test(\"status paid\", function () { nova.expect(d.status).toBe(\"paid\"); });\nnova.test(\"paymentId returned\", function () { nova.expect(d.paymentId).toContain(\"pay_\"); });\nnova.test(\"charged the order amount\", function () { nova.expect(d.amount).toBeCloseTo(parseFloat(nova.environment.get(\"orderAmount\")), 0.001); });\nnova.environment.set(\"paymentId\", d.paymentId);\n"

@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318593253384"
+name: OPTIONS
+method: OPTIONS
+url: "{{base_url}}/http/options"
+order: 7
+scripts:
+    postResponse: |-
+        nova.test("Allow lists verbs", function () { nova.expect(nova.response.getHeader("Allow")).toContain("POST"); });

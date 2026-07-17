@@ -1,0 +1,15 @@
+# Restk Request
+id: "336440320178700290"
+name: toBe - toEqual - nullish - truthiness
+method: GET
+url: "{{base_url}}/script/matchers"
+order: 1
+scripts:
+    postResponse: |-
+        var d = nova.response.json();
+
+        nova.test("toBe (strict)", function () { nova.expect(d.count).toBe(42); nova.expect(d.greeting).toBe("hello world"); });
+        nova.test("toEqual (deep)", function () { nova.expect(d.tags).toEqual(["alpha","beta","gamma"]); nova.expect(d.user).toEqual({ id: 7, name: "Jelly", active: true }); });
+        nova.test("toBeNull / toBeNotNull", function () { nova.expect(d.missing).toBeNull(); nova.expect(d.count).toBeNotNull(); });
+        nova.test("toBeDefined / toBeUndefined", function () { nova.expect(d.count).toBeDefined(); nova.expect(d.nope).toBeUndefined(); });
+        nova.test("toBeTruthy / toBeFalsy", function () { nova.expect(d.active).toBeTruthy(); nova.expect(d.disabled).toBeFalsy(); });

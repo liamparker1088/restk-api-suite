@@ -1,0 +1,15 @@
+# Restk Request
+id: "336440318593253391"
+name: require-content-type json (415 if wrong)
+method: POST
+url: "{{base_url}}/http/require-content-type/json"
+order: 5
+body:
+    json: |-
+        {
+          "ok": true
+        }
+scripts:
+    postResponse: |-
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+        nova.test("json accepted", function () { nova.expect(nova.response.json().contentType).toContain("application/json"); });

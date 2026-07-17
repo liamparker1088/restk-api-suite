@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447706"
+name: bytes-1024
+method: GET
+url: "{{base_url}}/http/bytes/1024"
+order: 1
+scripts:
+    postResponse: |-
+        nova.test("1024 bytes", function () { nova.expect(nova.response.size).toBe(1024); });

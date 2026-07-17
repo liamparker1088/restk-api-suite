@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318593253382"
+name: DELETE -http-method-DELETE
+method: DELETE
+url: "{{base_url}}/http/method/DELETE"
+order: 5
+scripts:
+    postResponse: |
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });

@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440315925676043"
+name: Product not found (404)
+method: GET
+url: "{{base_url}}/shop/products/p-9999"
+order: 5
+scripts:
+    postResponse: |-
+        nova.test("unknown product → 404", function () { nova.expect(nova.response.status).toBe(404); nova.expect(nova.response.json().error).toBe("product_not_found"); });

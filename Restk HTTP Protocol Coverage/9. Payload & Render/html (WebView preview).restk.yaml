@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447709"
+name: html (WebView preview)
+method: GET
+url: "{{base_url}}/http/html"
+order: 4
+scripts:
+    postResponse: |-
+        nova.test("text/html", function () { nova.expect(nova.response.contentType).toContain("text/html"); });

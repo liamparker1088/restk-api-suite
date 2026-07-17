@@ -1,0 +1,15 @@
+# Restk Request
+id: "336440320178700296"
+name: .not inverts every matcher
+method: GET
+url: "{{base_url}}/script/matchers"
+order: 1
+scripts:
+    postResponse: |-
+        var d = nova.response.json();
+
+        nova.test(".not.toBe", function () { nova.expect(d.count).not.toBe(0); });
+        nova.test(".not.toBeNull", function () { nova.expect(d.count).not.toBeNull(); });
+        nova.test(".not.toContain", function () { nova.expect(d.tags).not.toContain("zeta"); });
+        nova.test(".not.toBeEmpty", function () { nova.expect(d.tags).not.toBeEmpty(); });
+        nova.test(".not.toBeGreaterThan", function () { nova.expect(d.count).not.toBeGreaterThan(100); });

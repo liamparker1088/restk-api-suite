@@ -1,0 +1,17 @@
+# Restk Request
+id: "336440314646413314"
+name: Bearer — valid token
+description: 'App attaches Authorization: Bearer <token>; oracle 200s when it matches ?expected.'
+method: GET
+url: "{{base_url}}/auth/bearer"
+order: 1
+params:
+    - {id: "761FAF63-CA45-49B1-A631-DF0131AD16AD", key: expected, value: qa-bearer-token, order: 0}
+auth:
+    bearer: {}
+scripts:
+    postResponse: |-
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+        var d = nova.response.json();
+        nova.test("authType is bearer", function () { nova.expect(d.authType).toBe("bearer"); });
+        nova.test("echoed token matches", function () { nova.expect(d.token).toBe("qa-bearer-token"); });

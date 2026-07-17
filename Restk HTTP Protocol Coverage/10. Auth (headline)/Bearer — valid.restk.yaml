@@ -1,0 +1,13 @@
+# Restk Request
+id: "336440318597447713"
+name: Bearer — valid
+method: GET
+url: "{{base_url}}/auth/bearer"
+order: 1
+params:
+    - {id: "108F05FD-67B6-450C-85A8-F41D0884FC76", key: expected, value: test-token, order: 0}
+auth:
+    bearer: {}
+scripts:
+    postResponse: |
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });

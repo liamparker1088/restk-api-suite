@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440315925676046"
+name: Create cart — no auth (401)
+method: POST
+url: "{{base_url}}/shop/cart"
+order: 2
+scripts:
+    postResponse: |-
+        nova.test("cart without token → 401", function () { nova.expect(nova.response.status).toBe(401); });

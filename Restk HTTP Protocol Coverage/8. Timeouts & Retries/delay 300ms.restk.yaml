@@ -1,0 +1,11 @@
+# Restk Request
+id: "336440318597447703"
+name: delay 300ms
+method: GET
+url: "{{base_url}}/http/delay"
+order: 1
+params:
+    - {id: "AEA1EBE2-7F99-4921-BE11-94789334FCC5", key: ms, value: "300", order: 0}
+scripts:
+    postResponse: |-
+        nova.test("response took ≥ 250ms", function () { nova.expect(nova.response.responseTime).toBeGreaterThan(250); });

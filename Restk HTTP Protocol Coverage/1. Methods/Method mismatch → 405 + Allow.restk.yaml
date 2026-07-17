@@ -1,0 +1,13 @@
+# Restk Request
+id: "336440318593253383"
+name: Method mismatch → 405 + Allow
+method: POST
+url: "{{base_url}}/http/method/GET"
+order: 6
+body:
+    json: |-
+        {}
+scripts:
+    postResponse: |-
+        nova.test("status 405", function () { nova.expect(nova.response.status).toBe(405); });
+        nova.test("Allow header present", function () { nova.expect(nova.response.getHeader("Allow")).toBe("GET"); });

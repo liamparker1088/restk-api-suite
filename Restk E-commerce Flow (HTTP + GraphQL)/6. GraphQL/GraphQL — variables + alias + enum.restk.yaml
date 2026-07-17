@@ -1,0 +1,14 @@
+# Restk Request
+id: "336440315925676058"
+name: GraphQL — variables + alias + enum
+method: POST
+url: "{{base_url}}/graphql/shop"
+order: 2
+body:
+    graphql:
+        query: |-
+            query($id:ID!){ p:product(id:$id){ name category price } }
+        variables: |-
+            {"id":"p-1005"}
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"alias 'p' resolved\", function () { nova.expect(d.data.p).toBeDefined(); });\nnova.test(\"enum category is DISPLAYS\", function () { nova.expect(d.data.p.category).toBe(\"DISPLAYS\"); });\n"

@@ -1,0 +1,12 @@
+# Restk Request
+id: "336440315925676061"
+name: GraphQL — introspection
+method: POST
+url: "{{base_url}}/graphql/shop"
+order: 5
+body:
+    graphql:
+        query: |-
+            { __schema { queryType { name } types { name kind } } }
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"introspection returns the schema\", function () { nova.expect(d.data.__schema.queryType.name).toBe(\"Query\"); nova.expect(d.data.__schema.types.length).toBeGreaterThan(0); });\n"

@@ -1,0 +1,15 @@
+# Restk Request
+id: "336440318597447694"
+name: 302 downgrades POST → GET
+method: POST
+url: "{{base_url}}/http/redirect-downgrade"
+order: 3
+body:
+    json: |-
+        {
+          "dropped": true
+        }
+scripts:
+    postResponse: |-
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+        nova.test("downgraded to GET", function () { nova.expect(nova.response.json().method).toBe("GET"); });

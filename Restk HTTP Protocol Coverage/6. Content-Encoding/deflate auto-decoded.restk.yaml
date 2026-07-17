@@ -1,0 +1,9 @@
+# Restk Request
+id: "336440318597447697"
+name: deflate auto-decoded
+method: GET
+url: "{{base_url}}/http/deflate"
+order: 2
+scripts:
+    postResponse: |-
+        nova.test("deflate decoded", function () { nova.expect(nova.response.json().decoded).toBe(true); });

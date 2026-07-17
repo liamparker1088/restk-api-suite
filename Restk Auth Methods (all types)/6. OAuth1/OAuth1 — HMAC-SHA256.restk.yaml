@@ -1,0 +1,16 @@
+# Restk Request
+id: "336440314646413329"
+name: OAuth1 — HMAC-SHA256
+method: POST
+url: "{{base_url}}/auth/oauth1"
+order: 2
+auth:
+    oauth1:
+        consumerKey: oauth1-key
+        realm: ""
+        signatureMethod: HMAC-SHA256
+        token: oauth1-token
+scripts:
+    postResponse: |-
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+        nova.test("method HMAC-SHA256", function () { nova.expect(nova.response.json().method).toBe("HMAC-SHA256"); });

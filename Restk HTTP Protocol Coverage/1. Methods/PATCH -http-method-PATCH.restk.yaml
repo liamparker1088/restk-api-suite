@@ -1,0 +1,12 @@
+# Restk Request
+id: "336440318593253381"
+name: PATCH -http-method-PATCH
+method: PATCH
+url: "{{base_url}}/http/method/PATCH"
+order: 4
+body:
+    json: |-
+        {}
+scripts:
+    postResponse: |
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });

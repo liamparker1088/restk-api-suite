@@ -1,0 +1,11 @@
+# Restk Request
+id: "336440315925676045"
+name: Create cart → capture cartId
+description: Bearer-gated. Stores {{cartId}} for the item + checkout steps.
+method: POST
+url: "{{base_url}}/shop/cart"
+order: 1
+headers:
+    - {id: "5025A4D0-D02B-47D0-A5A2-7AE9359F7E74", key: Authorization, value: 'Bearer {{token}}', order: 0}
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"cart created (201)\", function () { nova.expect(nova.response.status).toBe(201); });\nnova.test(\"cartId returned\", function () { nova.expect(d.cartId).toContain(\"cart_\"); });\nnova.environment.set(\"cartId\", d.cartId);\n"

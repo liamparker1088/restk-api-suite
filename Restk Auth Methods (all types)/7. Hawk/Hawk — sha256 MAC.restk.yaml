@@ -1,0 +1,18 @@
+# Restk Request
+id: "336440314646413331"
+name: Hawk — sha256 MAC
+description: App computes the Hawk MAC over the normalized request; oracle recomputes and 200s on a match.
+method: GET
+url: "{{base_url}}/auth/hawk"
+order: 1
+auth:
+    hawk:
+        algorithm: sha256
+        ext: ""
+        hawkId: hawk-id
+scripts:
+    postResponse: |-
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+        var d = nova.response.json();
+        nova.test("hawk valid", function () { nova.expect(d.valid).toBe(true); });
+        nova.test("algo sha256", function () { nova.expect(d.algo).toBe("sha256"); });

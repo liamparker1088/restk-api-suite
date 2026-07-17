@@ -1,0 +1,14 @@
+# Restk Request
+id: "336440314646413315"
+name: Bearer — wrong token (401)
+description: 'Negative: app sends a non-matching token → 401. Proves the reject path.'
+method: GET
+url: "{{base_url}}/auth/bearer"
+order: 2
+params:
+    - {id: "8EA0628E-1326-4293-BA3E-5E27ADB22A06", key: expected, value: qa-bearer-token, order: 0}
+auth:
+    bearer: {}
+scripts:
+    postResponse: |-
+        nova.test("status 401", function () { nova.expect(nova.response.status).toBe(401); });

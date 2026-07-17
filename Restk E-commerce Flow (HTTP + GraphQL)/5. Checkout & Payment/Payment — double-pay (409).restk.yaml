@@ -1,0 +1,17 @@
+# Restk Request
+id: "336440315925676054"
+name: Payment — double-pay (409)
+method: POST
+url: "{{base_url}}/shop/payment"
+order: 4
+headers:
+    - {id: "42F677BB-F3DC-45D0-9E64-824CEDD6131C", key: Authorization, value: 'Bearer {{token}}', order: 0}
+body:
+    json: |-
+        {
+          "orderId": "{{orderId}}",
+          "card": "4111 1111 1111 1111"
+        }
+scripts:
+    postResponse: |-
+        nova.test("re-pay a paid order → 409", function () { nova.expect(nova.response.status).toBe(409); nova.expect(nova.response.json().error).toBe("already_paid"); });

@@ -1,0 +1,12 @@
+# Restk Request
+id: "336440315925676039"
+name: Search — wireless, sort by price
+description: Full-text + tag search, ascending price sort. Captures {{productId}} = the cheapest match for the cart step.
+method: GET
+url: "{{base_url}}/shop/search"
+order: 1
+params:
+    - {id: "FAFC476F-B94A-4A02-8D09-37AA9541B3A9", key: q, value: wireless, order: 0}
+    - {id: "7588BB6D-CEA1-4B63-9A89-68E76A9D32CE", key: sort, value: price, order: 1}
+scripts:
+    postResponse: "\nvar d = nova.response.json();\nnova.test(\"search returns results\", function () { nova.expect(d.total).toBeGreaterThan(0); nova.expect(d.results.length).toBeGreaterThan(0); });\nnova.test(\"results sorted ascending by price\", function () {\n    for (var i = 1; i < d.results.length; i++) { nova.expect(d.results[i].price).toBeGreaterThanOrEqual(d.results[i-1].price); }\n});\nnova.environment.set(\"productId\", d.results[0].id);\nnova.environment.set(\"productPrice\", String(d.results[0].price));\n"

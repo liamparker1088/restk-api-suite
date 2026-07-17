@@ -1,0 +1,10 @@
+# Restk Request
+id: "336440318593253378"
+name: GET -http-method-GET
+method: GET
+url: "{{base_url}}/http/method/GET"
+order: 1
+scripts:
+    postResponse: |-
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+        nova.test("method echoed", function () { nova.expect(nova.response.json().method).toBe("GET"); });

@@ -1,0 +1,8 @@
+# Restk Request
+id: "336440318597447680"
+name: auto-headers present
+method: GET
+url: "{{base_url}}/http/echo-headers"
+order: 1
+scripts:
+    postResponse: "\nvar h = nova.response.json();\nnova.test(\"User-Agent is RestkClient\", function () { nova.expect(h[\"User-Agent\"] || h[\"user-agent\"]).toContain(\"Restk\"); });\nnova.test(\"Accept-Encoding advertises br\", function () { nova.expect((h[\"Accept-Encoding\"]||h[\"accept-encoding\"])).toContain(\"br\"); });\n"

@@ -1,0 +1,13 @@
+# Restk Request
+id: "336440318593253379"
+name: POST -http-method-POST
+method: POST
+url: "{{base_url}}/http/method/POST"
+order: 2
+body:
+    json: |-
+        {}
+scripts:
+    postResponse: |-
+        nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
+        nova.test("method POST", function () { nova.expect(nova.response.json().method).toBe("POST"); });

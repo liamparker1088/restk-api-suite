@@ -1,0 +1,14 @@
+# Restk Request
+id: "336440318593253389"
+name: url-encoded form
+method: POST
+url: "{{base_url}}/http/anything"
+order: 3
+body:
+    urlencoded:
+        - {id: E8C14357-386F-4F15-BF97-47E72F94EBD6, isEnabled: true, isSecret: false, key: name, value: qa tester}
+        - {id: 52E89165-7BC3-4098-8A72-D5BA94C36B7B, isEnabled: true, isSecret: false, key: tag, value: a}
+        - {id: 453497C1-72C6-417F-968D-2A4CD42180B2, isEnabled: true, isSecret: false, key: b, value: ""}
+scripts:
+    postResponse: |-
+        nova.test("form fields received", function () { nova.expect(nova.response.json().form.name[0]).toBe("qa tester"); });

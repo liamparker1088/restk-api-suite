@@ -1,0 +1,11 @@
+# Restk Request
+id: "336440318597447682"
+name: response headers echoed
+method: GET
+url: "{{base_url}}/http/response-headers"
+order: 3
+params:
+    - {id: "813F3261-1935-424D-BFAE-A8CB6396E4B6", key: X-Custom, value: hello, order: 0}
+scripts:
+    postResponse: |-
+        nova.test("custom response header set", function () { nova.expect(nova.response.getHeader("X-Custom")).toBe("hello"); });
