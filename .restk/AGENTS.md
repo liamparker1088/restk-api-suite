@@ -26,19 +26,18 @@ Read **SCHEMA.md** for the exact format, then **RULES.md** for the rules.
 
 | ✅ You MAY modify | ❌ You MUST NOT touch |
 |---|---|
-| `name`, `method`, `url`, `description`, `order` | the `id` field (links file → app entity) |
+| `name`, `method`, `url`, `description`, `order` | the `id` field (Snowflake — links file → app entity) |
 | `params`, `headers`, `body`, `auth`, `scripts`, `variables` | `.restk-meta.json` (workspace ownership) |
 | `intent` (endpoint annotation, for agents) | any file under `.restk/` (these docs) |
-| doc pages (`_docs/*.md`) and runner presets (`_runners/*.runner.yaml`) | secret **values** — they are never written to these files |
+| protocol blocks (`socket`, `sse`, `soap`, `templates`) | `.env` value plumbing — put secrets there, not in YAML |
 | adding / deleting / **moving** request files (move = change folder) | the `id` of a variable / header / param row |
 
 **Golden rules** (full list in RULES.md):
 
 1. Never change any `id`. Changing it creates a duplicate instead of an update.
 2. Keep IDs quoted: `id: "298356360100184083"` (unquoted large ints lose precision).
-3. **Never write a secret value into these files.** Mark the variable/header
-   `secret: true` and omit its `value` — the real value is held by the app
-   and never exported. Reference it as `{{VAR}}`.
+3. Put secrets in `.env` and reference them as `{{VAR}}`; a `secret: true`
+   variable/header keeps its value out of the committed YAML.
 4. **Folder membership is the directory** — to move a request to another folder,
-   move the FILE into that folder's directory. There is no parent-id field.
+   move the FILE into that folder's directory. There is no `folderId` field.
 5. Emit valid YAML. An invalid file is skipped on import (silent no-op).
