@@ -1,12 +1,14 @@
 # Restk Request
 id: "336440318593253388"
 name: raw XML
-method: POST
+method: GET
 url: "{{base_url}}/http/echo-body"
 order: 2
 body:
     xml: |-
-        <note><to>qa</to></note>
+        <note>
+          <to>qa</to>
+        </note>
 scripts:
     postResponse: |-
         nova.test("xml echoed", function () { nova.expect(nova.response.text()).toContain("<to>qa</to>"); });
