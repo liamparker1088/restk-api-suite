@@ -4,3 +4,4 @@ name: Restk try Server
 variables:
     - {id: "336440314650607620", key: base_url, value: 'https://try.restk.ai', order: 0}
     - {id: "336839529908408320", key: token, order: 1.68032, secret: true}
+    - {id: "336842841061769216", key: user_name, value: Liam Parker, order: 2.68032}
