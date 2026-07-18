@@ -1,14 +1,11 @@
 # Restk Request
 id: "336440318593253378"
 name: GET -http-method-GET
-method: POST
-url: "{{base_url}}/http/method/POST"
+method: GET
+url: "{{base_url}}/http/method/GET"
 order: 1
 params:
     - {id: "6B971AD6-80E1-4749-9CFA-54E4CA99163A", key: Limit, value: "20", order: 1}
-auth:
-    bearer:
-        token: '{{token}}'
 scripts:
     postResponse: |-
         nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
