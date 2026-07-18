@@ -5,7 +5,7 @@ method: POST
 url: "{{base_url}}/http/method/POST"
 order: 1
 params:
-    - {id: "6B971AD6-80E1-4749-9CFA-54E4CA99163A", key: Limit, value: "5", order: 1}
+    - {id: "6B971AD6-80E1-4749-9CFA-54E4CA99163A", key: Limit, value: "20", order: 1}
 auth:
     bearer:
         token: '{{token}}'
