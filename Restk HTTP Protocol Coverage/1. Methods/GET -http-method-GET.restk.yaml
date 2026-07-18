@@ -1,8 +1,8 @@
 # Restk Request
 id: "336440318593253378"
 name: GET -http-method-GET
-method: GET
-url: "{{base_url}}/http/method/GET"
+method: POST
+url: "{{base_url}}/http/method/POST"
 order: 1
 scripts:
     postResponse: |-
