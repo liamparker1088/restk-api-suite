@@ -1,20 +1,22 @@
 # Restk Request
 id: "336440314646413323"
 name: Digest — SHA-256 - qop=auth
-method: PUT
+method: POST
 url: "{{base_url}}/auth/digest"
 order: 2
 params:
     - {id: "AF44DA3B-D6EE-42F8-A046-4CC9236ADF35", key: algorithm, value: RSA SHA-256, order: 0}
     - {id: "C09D4D7E-D375-4CD3-BFEC-4E67A1BDC0BC", key: qop, value: auth, order: 1}
 body:
-    form:
-        - {id: A8B4D6CB-F60F-40AF-B8CB-0799CC857323, isEnabled: true, isSecret: false, key: Name, type: text, value: Liam Parker}
+    json: |-
+        {
+          "name": "Alex"
+        }
 auth:
     digest:
         algorithm: SHA-256
         realm: ""
-        username: Liam
+        username: user
 scripts:
     postResponse: |-
         nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
