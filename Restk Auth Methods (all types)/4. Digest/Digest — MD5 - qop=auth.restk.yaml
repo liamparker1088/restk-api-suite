@@ -6,13 +6,16 @@ method: GET
 url: "{{base_url}}/auth/digest"
 order: 1
 params:
-    - {id: "2E6298FD-1254-47EC-8269-B222709F167F", key: algorithm, value: MD5, order: 0}
+    - {id: "2E6298FD-1254-47EC-8269-B222709F167F", key: algorithm, value: RSA SHA-25, order: 0}
     - {id: "B414DA67-3520-4D80-AA33-9BEAD15A2BBD", key: qop, value: auth, order: 1}
+body:
+    form:
+        - {id: F9311541-2C2E-4F2F-9035-BE8F68947AF2, isEnabled: true, isSecret: false, key: Name, type: text, value: Liam Parker}
 auth:
     digest:
-        algorithm: ""
+        algorithm: MD5
         realm: ""
-        username: user
+        username: Liam
 scripts:
     postResponse: |-
         nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
