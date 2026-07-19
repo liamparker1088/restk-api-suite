@@ -5,20 +5,6 @@ description: App computes the Hawk MAC over the normalized request; oracle recom
 method: GET
 url: "{{base_url}}/auth/hawk"
 order: 1
-headers:
-    - {id: "4CC7FCE3-40FF-4012-AA04-3A082DC8D804", key: X-Client-Name, value: Customer-admin-portal, order: 1}
-    - {id: "D369E16E-6BB4-465C-99E9-AC3F1D30C800", key: X-Client-Version, value: 2.4.1, order: 2}
-params:
-    - {id: "B5074DF0-3CEF-43AA-A262-DCB8EBCCFF73", key: Source, value: admin-portal, order: 1}
-    - {id: "6F9A7447-617A-4F16-BB74-A74BD87CC5F1", key: notify-customer, value: "true", order: 2}
-body:
-    json: |-
-        {
-          "Name" : "Liam Parker",
-          "Phone" : "9876565454"
-        }
-auth:
-    bearer: {}
 scripts:
     postResponse: |-
         nova.test("status 200", function () { nova.expect(nova.response.status).toBe(200); });
