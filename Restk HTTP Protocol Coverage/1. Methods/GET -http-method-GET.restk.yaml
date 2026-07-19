@@ -1,6 +1,17 @@
 # Restk Request
 id: "336440318593253378"
 name: GET -http-method-GET
+description: |-
+    Exercises the server's `/http/method/GET` route, which echoes back the HTTP verb it received along with the query string. Used to confirm the client sends the verb the request is configured with, and that query parameters survive the round trip. A successful call returns 200 with a JSON body naming the received method.
+
+    Note: this request is currently configured with method PUT against the GET route, which makes it a verb-mismatch case rather than a plain GET check. If you intended a straight GET verification, set the method to GET.
+intent:
+    whenToUse: Verifying that the configured HTTP verb and query parameters are transmitted unchanged.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Compare against the POST, PUT, PATCH and DELETE requests in this folder to confirm every verb round-trips.
+    doNotUseFor: Testing request bodies — this route ignores them. Use the Body Types folder instead.
 method: PUT
 url: "{{base_url}}/http/method/GET"
 order: 1

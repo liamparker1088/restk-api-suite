@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447689"
 name: 418 I'm a teapot
+description: Calls `/http/status/418` and expects 418 I'm a teapot — an uncommon status with a distinctive reason phrase. Confirms the client displays the server's actual reason phrase rather than substituting a generic label derived from the numeric code. Returns 418.
+intent:
+    whenToUse: Verifying unusual status codes and their reason phrases are shown verbatim.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Confirm the response panel reads "I'm a teapot" and not a generic 4xx label.
+    doNotUseFor: Standard error handling — 418 is deliberately non-standard.
 method: GET
 url: "{{base_url}}/http/status/418"
 order: 6

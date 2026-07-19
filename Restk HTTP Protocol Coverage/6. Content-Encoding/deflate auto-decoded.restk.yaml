@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447697"
 name: deflate auto-decoded
+description: 'Calls `/http/deflate`, which returns a deflate-compressed body with `Content-Encoding: deflate`. Confirms the client handles deflate as well as gzip — the two are frequently conflated and deflate is the more common source of decoding bugs. Returns 200 with readable decompressed content.'
+intent:
+    whenToUse: Verifying deflate-encoded responses decode correctly.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Compare with the gzip request to confirm both encodings behave identically from the caller's view.
+    doNotUseFor: Inspecting raw compressed bytes — decoding happens before display.
 method: GET
 url: "{{base_url}}/http/deflate"
 order: 2

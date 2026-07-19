@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318593253379"
 name: POST -http-method-POST
+description: Sends a POST with a raw body to `/http/method/POST` and confirms the server records the verb as POST. Verifies that the client transmits POST correctly and that a body is accepted on a verb that permits one. Returns 200 with a JSON echo of the received method.
+intent:
+    whenToUse: Confirming POST requests are sent with the correct verb and carry their body.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Check the Body Types folder to verify each content type serialises correctly.
+    doNotUseFor: Validating status-code handling — use the Status Codes folder.
 method: POST
 url: "{{base_url}}/http/method/POST"
 order: 2

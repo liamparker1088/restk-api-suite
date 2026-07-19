@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318593253389"
 name: url-encoded form
+description: Posts an `application/x-www-form-urlencoded` body to `/http/anything` and confirms the fields are correctly encoded and parsed. Verifies that key/value pairs are percent-encoded properly and that special characters survive the round trip. Returns 200 with the parsed form fields reflected in the JSON echo.
+intent:
+    whenToUse: Verifying URL-encoded form submissions encode and parse correctly.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Add a field containing spaces or ampersands to confirm percent-encoding holds.
+    doNotUseFor: File uploads — use the multipart form-data request.
 method: POST
 url: "{{base_url}}/http/anything"
 order: 3

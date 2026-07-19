@@ -4,3 +4,4 @@ name: Restk E-commerce Flow (HTTP + GraphQL)
 createdAt: 1784280822
 order: 1
 auth: none
+isSharedWithAI: true

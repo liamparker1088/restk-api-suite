@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318593253391"
 name: require-content-type json (415 if wrong)
+description: Posts to `/http/require-content-type/json`, a route that accepts only `application/json` and rejects anything else with 415 Unsupported Media Type. Send it with the correct content type for a 200, or change the type to confirm the 415 path. Verifies the client sets Content-Type accurately and surfaces 415 responses clearly.
+intent:
+    whenToUse: Verifying Content-Type negotiation and 415 handling.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Change the body type to text or XML and resend to confirm the server returns 415.
+    doNotUseFor: General body round-trip checks — use the raw JSON request.
 method: POST
 url: "{{base_url}}/http/require-content-type/json"
 order: 5

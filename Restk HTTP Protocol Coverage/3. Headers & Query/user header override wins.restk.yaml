@@ -1,6 +1,15 @@
 # Restk Request
 id: "336440318597447681"
 name: user header override wins
+description: Calls `/http/headers/one/User-Agent` with a manually-set User-Agent to confirm a user-defined header takes precedence over the client's automatic default. The server returns just that one header, so the winning value is unambiguous. Returns 200 with the received User-Agent.
+intent:
+    whenToUse: Confirming a manually-configured header overrides the client's built-in default rather than being appended alongside it.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+        - A User-Agent header must be set on the Headers tab.
+    commonNextSteps:
+        - Disable the manual header and resend to see the automatic default return.
+    doNotUseFor: Verifying the full automatic header set — use the auto-headers request.
 method: GET
 url: "{{base_url}}/http/headers/one/User-Agent"
 order: 2

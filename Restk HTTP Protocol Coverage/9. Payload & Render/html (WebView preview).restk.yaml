@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447709"
 name: html (WebView preview)
+description: Calls `/http/html`, which returns an HTML document. Confirms the client offers a rendered preview of HTML content in addition to the raw source, so a page response can be inspected either way. Returns 200 with `text/html`.
+intent:
+    whenToUse: Verifying HTML responses can be previewed as rendered output as well as raw source.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Toggle the Preview control to switch between rendered and source views.
+    doNotUseFor: Plain-text checks — use the plain text request.
 method: GET
 url: "{{base_url}}/http/html"
 order: 4

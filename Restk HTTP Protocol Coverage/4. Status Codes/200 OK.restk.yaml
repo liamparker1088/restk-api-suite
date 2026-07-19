@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447684"
 name: 200 OK
+description: Calls `/http/status/200` and expects a plain 200 OK. The baseline success case for the collection — if this fails, the test server is unreachable or misconfigured and every other request in the collection is suspect. Returns 200 with a small JSON body.
+intent:
+    whenToUse: Smoke-testing connectivity to the test server before running the wider collection.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Run the rest of the Status Codes folder to cover the error paths.
+    doNotUseFor: Anything beyond a reachability check — the response carries no meaningful payload.
 method: GET
 url: "{{base_url}}/http/status/200"
 order: 1

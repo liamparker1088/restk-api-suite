@@ -1,6 +1,15 @@
 # Restk Request
 id: "336440318597447692"
 name: chain x3 → lands 200
+description: Calls `/http/redirect/3`, which issues three consecutive redirects before returning 200. Confirms the client follows a redirect chain automatically and reports the final destination rather than stopping at the first 3xx. Returns 200 after the chain resolves.
+intent:
+    whenToUse: Verifying multi-hop redirect chains are followed to completion.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+        - Redirect following must be enabled in request Settings.
+    commonNextSteps:
+        - Disable redirect following in Settings and resend to confirm the raw 3xx is returned instead.
+    doNotUseFor: Method-preservation checks — use the 307 and 302 requests.
 method: GET
 url: "{{base_url}}/http/redirect/3"
 order: 1

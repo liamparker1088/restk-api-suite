@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318593253380"
 name: PUT -http-method-PUT
+description: Sends a PUT with a raw body to `/http/method/PUT` and confirms the server records the verb as PUT. PUT is the canonical idempotent replace verb, so this also serves as a baseline for checking that repeated identical calls produce identical results. Returns 200 with a JSON echo of the received method.
+intent:
+    whenToUse: Confirming PUT is transmitted correctly and behaves idempotently across repeat sends.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Send the request twice and confirm the response is identical both times.
+    doNotUseFor: Partial-update semantics — use the PATCH request in this folder.
 method: PUT
 url: "{{base_url}}/http/method/PUT"
 order: 3

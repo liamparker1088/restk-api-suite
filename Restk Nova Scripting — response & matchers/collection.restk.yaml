@@ -4,3 +4,4 @@ name: Restk Nova Scripting — response & matchers
 createdAt: 1784280823
 order: 1
 auth: none
+isSharedWithAI: true

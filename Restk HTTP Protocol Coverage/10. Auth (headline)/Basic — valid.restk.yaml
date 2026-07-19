@@ -1,6 +1,15 @@
 # Restk Request
 id: "336440318597447715"
 name: Basic — valid
+description: 'Calls `/auth/basic` with HTTP Basic credentials. Confirms the client base64-encodes the username and password correctly into the `Authorization: Basic` header. Returns 200 when the credentials are accepted.'
+intent:
+    whenToUse: Verifying HTTP Basic auth encoding and acceptance.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+        - A username and password must be configured on the Auth tab.
+    commonNextSteps:
+        - Change the password and resend to confirm the server returns 401.
+    doNotUseFor: Token-based schemes — use the Bearer request.
 method: GET
 url: "{{base_url}}/auth/basic"
 order: 3

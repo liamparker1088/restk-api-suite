@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447682"
 name: response headers echoed
+description: Calls `/http/response-headers`, which sets arbitrary headers on its response based on the query string. Confirms the client captures and displays all response headers, including custom and repeated ones, in the response Headers tab. Returns 200 with the requested headers applied to the response.
+intent:
+    whenToUse: Verifying response headers are captured and displayed, including custom and duplicate keys.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Open the response Headers tab and confirm the count matches what the query string requested.
+    doNotUseFor: Request header checks — use the auto-headers request.
 method: GET
 url: "{{base_url}}/http/response-headers"
 order: 3

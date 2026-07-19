@@ -1,6 +1,15 @@
 # Restk Request
 id: "336440318597447694"
 name: 302 downgrades POST → GET
+description: Posts to `/http/redirect-downgrade`, which responds 302 Found. In practice a 302 causes clients to reissue the request as GET and drop the body — the historical behaviour codified by every major HTTP client. Confirms the client matches that convention, which is the deliberate contrast to the 307 request in this folder.
+intent:
+    whenToUse: Verifying 302 downgrades POST to GET and discards the request body.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+        - Redirect following must be enabled in request Settings.
+    commonNextSteps:
+        - Confirm the final response reports the method as GET, then compare against the 307 request.
+    doNotUseFor: Cases where the method must survive the redirect — that is 307 behaviour.
 method: POST
 url: "{{base_url}}/http/redirect-downgrade"
 order: 3

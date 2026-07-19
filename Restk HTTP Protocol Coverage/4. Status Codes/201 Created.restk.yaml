@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447685"
 name: 201 Created
+description: Posts to `/http/status/201` and expects 201 Created, the conventional response to a successful resource creation. Confirms the client treats 2xx codes other than 200 as success rather than flagging them as unexpected. Returns 201 with a JSON body.
+intent:
+    whenToUse: Verifying non-200 success codes are handled as successes.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Check the 204 request to confirm an empty success body is handled too.
+    doNotUseFor: Testing actual resource creation — no resource is persisted.
 method: POST
 url: "{{base_url}}/http/status/201"
 order: 2

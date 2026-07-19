@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447711"
 name: content-type mismatch (json as text-plain)
+description: Calls `/http/content-type-mismatch`, which returns a JSON body labelled `text/plain`. A deliberate mismatch between the declared content type and the actual payload. Confirms the client can still offer JSON formatting when the body is valid JSON despite the misleading header, rather than trusting the header blindly. Returns 200.
+intent:
+    whenToUse: Verifying the viewer copes when Content-Type does not match the actual payload.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Switch the Format control to JSON and confirm the body pretty-prints correctly.
+    doNotUseFor: Well-formed content-type behaviour — use the plain text or raw JSON requests.
 method: GET
 url: "{{base_url}}/http/content-type-mismatch"
 order: 6

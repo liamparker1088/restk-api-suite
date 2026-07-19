@@ -1,6 +1,15 @@
 # Restk Request
 id: "336440318597447714"
 name: Bearer — missing → 401
+description: 'Calls `/auth/bearer` with no Authorization header and expects 401 Unauthorized. A negative test: the 401 is the pass condition. Confirms the server rejects unauthenticated access and that the client surfaces the challenge, typically including a `WWW-Authenticate` header. Returns 401.'
+intent:
+    whenToUse: Verifying unauthenticated requests are rejected with 401.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+        - Auth must be set to none on this request.
+    commonNextSteps:
+        - Check the response for a WWW-Authenticate header describing the expected scheme.
+    doNotUseFor: Success-path auth testing — this request is expected to return 401.
 method: GET
 url: "{{base_url}}/auth/bearer"
 order: 2

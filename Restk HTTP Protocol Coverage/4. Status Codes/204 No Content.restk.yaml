@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447686"
 name: 204 No Content
+description: Calls `/http/status/empty/204` and expects 204 No Content — a success response that carries no body at all. Confirms the client renders an empty response cleanly instead of showing a parse error or a blank panel that looks like a failure. Returns 204 with zero content length.
+intent:
+    whenToUse: Verifying bodyless success responses render correctly.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Confirm the response viewer shows an explicit empty state rather than an error.
+    doNotUseFor: Body parsing checks — there is deliberately no body.
 method: GET
 url: "{{base_url}}/http/status/empty/204"
 order: 3

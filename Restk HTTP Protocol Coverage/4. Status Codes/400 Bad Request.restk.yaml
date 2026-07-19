@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447687"
 name: 400 Bad Request
+description: 'Calls `/http/status/400` and expects 400 Bad Request. A negative test: the 400 is the pass condition. Confirms client-error responses are surfaced with their body intact so the caller can read the server''s explanation. Returns 400 with a JSON error body.'
+intent:
+    whenToUse: Verifying 4xx responses are displayed with their error body rather than discarded.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Compare with the 500 request to see client-error versus server-error handling.
+    doNotUseFor: Success-path testing — this request is expected to return 400.
 method: GET
 url: "{{base_url}}/http/status/400"
 order: 4

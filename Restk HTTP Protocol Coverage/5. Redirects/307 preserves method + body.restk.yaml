@@ -1,6 +1,15 @@
 # Restk Request
 id: "336440318597447693"
 name: 307 preserves method + body
+description: Posts to `/http/redirect-preserve`, which responds 307 Temporary Redirect. Per the HTTP specification a 307 must preserve both the original method and body, so the redirected call should arrive at the destination still as a POST carrying its payload. Confirms the client implements 307 correctly rather than downgrading it.
+intent:
+    whenToUse: Verifying 307 preserves the method and body across the redirect.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+        - Redirect following must be enabled in request Settings.
+    commonNextSteps:
+        - Confirm the final response reports the method as POST, then compare against the 302 request.
+    doNotUseFor: Cases where a redirect is expected to downgrade to GET — that is 302 behaviour.
 method: POST
 url: "{{base_url}}/http/redirect-preserve"
 order: 2

@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447698"
 name: brotli auto-decoded
+description: 'Calls `/http/brotli`, which returns a Brotli-compressed body with `Content-Encoding: br`. Brotli is the newest of the three common encodings and the most likely to be unsupported by an older client, so this is the sharpest test of the trio. Returns 200 with readable decompressed content.'
+intent:
+    whenToUse: Verifying Brotli-encoded responses decode correctly.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Check that Accept-Encoding advertises br by inspecting the auto-headers request.
+    doNotUseFor: Inspecting raw compressed bytes — decoding happens before display.
 method: GET
 url: "{{base_url}}/http/brotli"
 order: 3

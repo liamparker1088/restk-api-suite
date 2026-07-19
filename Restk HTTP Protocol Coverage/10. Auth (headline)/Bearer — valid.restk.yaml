@@ -1,6 +1,15 @@
 # Restk Request
 id: "336440318597447713"
 name: Bearer — valid
+description: 'Calls `/auth/bearer` with a valid bearer token configured on the Auth tab. Confirms the client builds the `Authorization: Bearer <token>` header correctly and that the token resolves from its variable. Returns 200 when the token is accepted.'
+intent:
+    whenToUse: Verifying bearer token auth succeeds end to end.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+        - A valid token must be configured on the Auth tab or in the environment.
+    commonNextSteps:
+        - Compare with the Bearer missing request to confirm the 401 path.
+    doNotUseFor: Other auth schemes — see the Basic and API key requests.
 method: GET
 url: "{{base_url}}/auth/bearer"
 order: 1

@@ -1,6 +1,15 @@
 # Restk Request
 id: "336440318597447716"
 name: API key (header)
+description: Calls `/auth/apikey` with an API key supplied as a request header. Confirms the client places the key in the header rather than the query string, and that the header name matches what the server expects. Returns 200 when the key is accepted.
+intent:
+    whenToUse: Verifying header-based API key auth is transmitted correctly.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+        - An API key and header name must be configured on the Auth tab.
+    commonNextSteps:
+        - Switch the key location from header to query and confirm the server rejects it.
+    doNotUseFor: Bearer or Basic schemes — those have their own requests in this folder.
 method: GET
 url: "{{base_url}}/auth/apikey"
 order: 4

@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447703"
 name: delay 300ms
+description: Calls `/http/delay`, which holds the response for roughly 300 milliseconds before replying. Confirms the client reports elapsed time accurately and keeps the UI responsive during an in-flight request. Useful as a baseline before testing shorter timeout values. Returns 200 after the delay.
+intent:
+    whenToUse: Verifying timing measurement and UI responsiveness during a slow request.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Lower the request timeout below 300ms in Settings to confirm the timeout path triggers.
+    doNotUseFor: Retry behaviour — use the 429 rate-limited request.
 method: GET
 url: "{{base_url}}/http/delay"
 order: 1

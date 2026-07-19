@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318593253384"
 name: OPTIONS
+description: Issues an OPTIONS request to `/http/options` to discover which methods the route supports. The server responds with the permitted verbs in the `Allow` header, and typically CORS headers alongside. Confirms the client can send OPTIONS as a first-class verb rather than only as an implicit CORS preflight.
+intent:
+    whenToUse: Discovering which methods a route supports, or checking CORS preflight headers.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Read the Allow header, then exercise each verb it lists.
+    doNotUseFor: Retrieving resource data — OPTIONS returns metadata, not content.
 method: OPTIONS
 url: "{{base_url}}/http/options"
 order: 7

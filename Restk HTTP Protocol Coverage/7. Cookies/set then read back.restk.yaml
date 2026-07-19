@@ -1,6 +1,15 @@
 # Restk Request
 id: "336440318597447700"
 name: set then read back
+description: Calls `/http/cookies/set`, which issues a `Set-Cookie` header, then confirms the cookie is stored and replayed on the following request to the same host. Verifies the client maintains a cookie jar across calls rather than discarding cookies after each response. Returns 200 with the cookie set.
+intent:
+    whenToUse: Verifying cookies are persisted between requests and sent back automatically.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+        - Cookie handling must be enabled for the workspace.
+    commonNextSteps:
+        - Send a second request to the same host and confirm the Cookie header is present.
+    doNotUseFor: Cookie attribute semantics — use the attribute matrix request.
 method: GET
 url: "{{base_url}}/http/cookies/set"
 order: 1

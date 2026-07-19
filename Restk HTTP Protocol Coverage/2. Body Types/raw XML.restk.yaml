@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318593253388"
 name: raw XML
+description: Posts a raw XML body to `/http/echo-body`, which returns the request body verbatim. Confirms that non-JSON payloads pass through unchanged and that the response viewer renders XML correctly rather than assuming JSON. Returns 200 with the body echoed back.
+intent:
+    whenToUse: Verifying XML or other non-JSON payloads are transmitted and displayed without corruption.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Switch the response Format control to confirm XML pretty-printing works.
+    doNotUseFor: JSON payloads — use the raw JSON request instead.
 method: POST
 url: "{{base_url}}/http/echo-body"
 order: 2

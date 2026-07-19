@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447701"
 name: attribute matrix
+description: Calls `/http/cookies/set-attributes`, which returns cookies carrying a spread of attributes — Path, Domain, Secure, HttpOnly, SameSite and expiry. Confirms the client parses each attribute correctly and honours them when deciding whether to replay a cookie. Returns 200 with several cookies set.
+intent:
+    whenToUse: Verifying cookie attributes are parsed and respected, especially Secure and SameSite.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Open the cookie manager and confirm each attribute is recorded as sent.
+    doNotUseFor: Basic cookie persistence — use the set then read back request.
 method: GET
 url: "{{base_url}}/http/cookies/set-attributes"
 order: 2

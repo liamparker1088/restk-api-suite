@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318593253383"
 name: Method mismatch → 405 + Allow
+description: 'Deliberately sends POST to `/http/method/GET`, a route that only accepts GET. The server is expected to reject it with 405 Method Not Allowed and include an `Allow` header listing the permitted verbs. This is a negative test: a 405 response means the endpoint passed. Confirms the client surfaces 4xx responses and their headers rather than silently swallowing them.'
+intent:
+    whenToUse: Verifying 405 handling and that the Allow response header is captured.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Inspect the Allow header in the response Headers tab to confirm it lists GET.
+    doNotUseFor: Happy-path verb checks — this request is expected to fail with 405 by design.
 method: POST
 url: "{{base_url}}/http/method/GET"
 order: 6

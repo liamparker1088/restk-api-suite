@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447690"
 name: 500 Server Error
+description: Calls `/http/status/500` and expects 500 Internal Server Error. Confirms server-side failures are surfaced with their body preserved, so a stack trace or error payload remains readable. Returns 500 with a JSON error body.
+intent:
+    whenToUse: Verifying 5xx responses are displayed with their body intact.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Compare with the 400 request to confirm client and server errors are visually distinguishable.
+    doNotUseFor: Success-path testing — this request is expected to return 500.
 method: GET
 url: "{{base_url}}/http/status/500"
 order: 7

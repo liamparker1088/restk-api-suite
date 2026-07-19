@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318593253381"
 name: PATCH -http-method-PATCH
+description: Sends a PATCH with a raw body to `/http/method/PATCH` and confirms the server records the verb as PATCH. PATCH is the partial-update verb and, unlike PUT, is not required to be idempotent. Returns 200 with a JSON echo of the received method.
+intent:
+    whenToUse: Confirming PATCH is transmitted correctly for partial-update flows.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Contrast with the PUT request to see full-replace versus partial-update semantics.
+    doNotUseFor: Full-resource replacement — use PUT.
 method: PATCH
 url: "{{base_url}}/http/method/PATCH"
 order: 4

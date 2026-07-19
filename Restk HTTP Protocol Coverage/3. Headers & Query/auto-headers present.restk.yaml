@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447680"
 name: auto-headers present
+description: Calls `/http/echo-headers`, which returns every header the server received. Used to confirm the client's automatically-added headers — Host, User-Agent, Accept, Accept-Encoding and similar — are present and well-formed without the user configuring anything. Returns 200 with the received headers as JSON.
+intent:
+    whenToUse: Inspecting which headers the client adds automatically to every request.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Compare with the user header override request to see how a manual header interacts with the defaults.
+    doNotUseFor: Checking response headers — use the response headers echoed request.
 method: GET
 url: "{{base_url}}/http/echo-headers"
 order: 1

@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447708"
 name: plain text
+description: Calls `/http/plain`, which returns `text/plain` content. Confirms the client renders plain text as-is without imposing JSON formatting or syntax highlighting on content that has no structure. Returns 200 with a short text body.
+intent:
+    whenToUse: Verifying plain-text responses render without spurious formatting.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Compare with the html and PNG requests to see how the viewer switches by content type.
+    doNotUseFor: Structured-data rendering — use the raw JSON request.
 method: GET
 url: "{{base_url}}/http/plain"
 order: 3

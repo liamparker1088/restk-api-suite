@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318593253385"
 name: anything — full echo + dup query
+description: Posts to `/http/anything`, a catch-all route that echoes the entire received request back as JSON — method, headers, query parameters, and body. Includes duplicate query keys to confirm repeated parameters are preserved as a list rather than collapsed to a single value. The most useful diagnostic endpoint in this collection when you need to see exactly what the client transmitted.
+intent:
+    whenToUse: Debugging what the client actually sent, especially duplicate query keys or unexpected headers.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Compare the echoed request against what the Params and Headers tabs show.
+    doNotUseFor: Asserting server-side behaviour — this route only reflects the request back.
 method: POST
 url: "{{base_url}}/http/anything"
 order: 8

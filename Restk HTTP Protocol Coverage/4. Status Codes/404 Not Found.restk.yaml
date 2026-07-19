@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447688"
 name: 404 Not Found
+description: Calls `/http/status/404` and expects 404 Not Found. Confirms the most common client error is reported clearly and distinguished from a network failure — a missing resource and an unreachable host should not look the same in the response panel. Returns 404 with a JSON error body.
+intent:
+    whenToUse: Verifying 404 is reported as a server response rather than a connection failure.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Point base_url at an unreachable host to contrast a true network error with this 404.
+    doNotUseFor: Success-path testing — this request is expected to return 404.
 method: GET
 url: "{{base_url}}/http/status/404"
 order: 5

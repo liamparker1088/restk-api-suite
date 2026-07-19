@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447696"
 name: gzip auto-decoded
+description: 'Calls `/http/gzip`, which returns a gzip-compressed body with `Content-Encoding: gzip`. Confirms the client decompresses transparently and shows readable text rather than binary noise. The reported response size may reflect the decoded payload rather than the bytes on the wire.'
+intent:
+    whenToUse: Verifying gzip responses are decompressed automatically and rendered as readable content.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Compare with the deflate and brotli requests to confirm all three encodings decode.
+    doNotUseFor: Inspecting raw compressed bytes — decoding happens before display.
 method: GET
 url: "{{base_url}}/http/gzip"
 order: 1

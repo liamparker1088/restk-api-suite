@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447707"
 name: stream 5 NDJSON lines
+description: Calls `/http/stream/5`, which emits five newline-delimited JSON objects as a stream rather than a single buffered document. Confirms the client handles NDJSON without waiting for or requiring a complete JSON document, and displays each line readably. Returns 200 with five lines.
+intent:
+    whenToUse: Verifying newline-delimited JSON streams are received and rendered line by line.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Confirm all five lines are present and each parses as independent JSON.
+    doNotUseFor: Server-sent events — NDJSON and SSE are different formats.
 method: GET
 url: "{{base_url}}/http/stream/5"
 order: 2

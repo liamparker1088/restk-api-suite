@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447706"
 name: bytes-1024
+description: Calls `/http/bytes/1024`, which returns exactly 1024 bytes of binary data. Confirms the client reports response size accurately and handles a binary payload without attempting to parse it as text. Returns 200 with a fixed-length binary body.
+intent:
+    whenToUse: Verifying binary responses and that the reported byte count is exact.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Confirm the response size indicator reads 1024 bytes.
+    doNotUseFor: Text or JSON rendering checks — the payload is deliberately binary.
 method: GET
 url: "{{base_url}}/http/bytes/1024"
 order: 1

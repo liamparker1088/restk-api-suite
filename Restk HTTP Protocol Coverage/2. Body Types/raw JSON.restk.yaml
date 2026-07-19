@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318593253387"
 name: raw JSON
+description: 'Posts a raw JSON body to `/http/anything` and confirms the payload arrives intact with `Content-Type: application/json`. The echo route reflects the parsed body back, so you can verify both that the client set the header correctly and that the JSON was not mangled in transit. Returns 200 with the received request reflected as JSON.'
+intent:
+    whenToUse: Verifying JSON request bodies serialise correctly and carry the right Content-Type.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Compare the echoed body against what the Body tab shows to confirm they match byte for byte.
+    doNotUseFor: Content-type negotiation failures — use the require-content-type request in this folder.
 method: POST
 url: "{{base_url}}/http/anything"
 order: 1

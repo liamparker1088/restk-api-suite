@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447704"
 name: 429 rate-limited
+description: Calls `/http/status/429` and expects 429 Too Many Requests, typically accompanied by a `Retry-After` header. Confirms rate-limit responses are surfaced clearly and that the retry hint is captured so a caller can back off appropriately. Returns 429.
+intent:
+    whenToUse: Verifying rate-limit responses and that Retry-After is captured.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Check the response Headers tab for Retry-After and confirm the value is readable.
+    doNotUseFor: General latency testing — use the delay request.
 method: GET
 url: "{{base_url}}/http/status/429"
 order: 2

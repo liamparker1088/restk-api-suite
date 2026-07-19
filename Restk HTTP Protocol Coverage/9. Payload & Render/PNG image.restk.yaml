@@ -1,6 +1,14 @@
 # Restk Request
 id: "336440318597447710"
 name: PNG image
+description: Calls `/http/image/png`, which returns a PNG image. Confirms the client detects image content types and displays the image inline rather than dumping binary data into the text viewer. Returns 200 with `image/png`.
+intent:
+    whenToUse: Verifying image responses render inline in the response viewer.
+    preconditions:
+        - base_url must resolve to a running Restk test server.
+    commonNextSteps:
+        - Confirm the image displays rather than showing raw bytes.
+    doNotUseFor: Generic binary payloads — use the bytes-1024 request.
 method: GET
 url: "{{base_url}}/http/image/png"
 order: 5
